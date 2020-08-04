@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
 import "@testing-library/jest-dom";
 import App from "./App";
@@ -48,14 +48,23 @@ describe('App', () => {
     it('Should show URLs if added', async () => {
         const { getByText } = render (<App />)
         const title = await waitFor(() => getByText('alex'));
-        expect(title).toBeInTheDocument();
         const longUrl = await waitFor(() => getByText('test2'));
-        expect(longUrl).toBeInTheDocument();
         const shortUrl = await waitFor(() => getByText('http://localhost:3001/useshorturl/2'));
+        expect(title).toBeInTheDocument();
+        expect(longUrl).toBeInTheDocument();
         expect(shortUrl).toBeInTheDocument();
     })
 
-    it('Should show a new url after filling out the submission form', () => {
-        const { getByText } = render (<App />)
+    it('Should show a new url after filling out the submission form', async () => {
+        const { getByText, getByPlaceholderText, getByRole } = render (<App />)
+        const titleInput = getByPlaceholderText('Title...')
+        const urlInput = getByPlaceholderText('URL to Shorten...')
+        const submitButton = getByRole('button')
+        fireEvent.change(titleInput, { target: { value: 'test title 2'}})
+        fireEvent.change(urlInput, { target: { value: 'test long url'}}) 
+        fireEvent.click(submitButton)
+        const newTitle = await waitFor(() => getByText('test title 2'))
+        expect(newTitle).toBeInTheDocument()
     })   
 })
+

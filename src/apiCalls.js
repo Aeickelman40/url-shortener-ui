@@ -16,3 +16,9 @@ export const postUrl = ( title, long_url) => {
     })
   })
 }
+
+export const deleteUrl = (id) => {
+  return fetch(`http://localhost:3001/api/v1/urls/${id}`, {
+    method: 'DELETE'
+  })
+}

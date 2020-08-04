@@ -30,8 +30,10 @@ componentDidMount = async () => {
 
   addNewUrl = async ({ title, long_url }) => {
     postUrl(title, long_url)
-    .then((response) => response.json())
-    .catch((error) => console.log(error))
+  }
+
+  deleteFromDom = (id) => {
+    let selectedUrl = this.state.urls.find(url => url.id === id)
   }
 
   render() {
@@ -46,7 +48,7 @@ componentDidMount = async () => {
 
         <UrlContainer 
           urls={this.state.urls}
-
+          deleteUrl={this.deleteFromDom}
           />
       </main>
     );
