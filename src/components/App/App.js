@@ -35,7 +35,7 @@ componentDidMount = async () => {
   }
 
   render() {
-    console.log(this.state.urls)
+    // console.log(this.state.urls)
     return (
       <main className="App">
         <header>
