@@ -4,7 +4,7 @@ export const getUrls = () => {
 }
 
 
-export const postUrl = (title, urlToShorten) => {
+export const postUrl = (title, long_url) => {
   return fetch('http://localhost:3001/api/v1/urls', {
     method: 'POST', 
     headers : {
@@ -12,22 +12,7 @@ export const postUrl = (title, urlToShorten) => {
     },
     body: JSON.stringify({
       title,
-      urlToShorten
+      long_url
     })
   })
 }
-
-// export const postReservation = (name, date, time, number) => {
-//   return fetch('http://localhost:3001/api/v1/reservations', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       name,
-//       date,
-//       time,
-//       number
-//     })
-//   })
-// }
