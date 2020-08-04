@@ -28,8 +28,8 @@ componentDidMount = async () => {
     this.addNewUrl(newUrl);
   }
 
-  addNewUrl = async ({ title, urlToShorten }) => {
-    postUrl(title, urlToShorten)
+  addNewUrl = async ({ title, long_url }) => {
+    postUrl(title, long_url)
     .then((response) => response.json())
     .catch((error) => console.log(error))
   }
@@ -41,7 +41,7 @@ componentDidMount = async () => {
         <header>
           <h1>URL Shortener</h1>
           <UrlForm
-            saveUrl = {this.saveUrl}   />
+                    saveUrl = {this.saveUrl}   />
         </header>
 
         <UrlContainer 
